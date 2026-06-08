@@ -2,7 +2,7 @@
 
 A head-to-head comparison of two stock portfolios using live market data — mine vs. a friend's. Built as a DS350 project at BYU-Idaho.
 
-**[Live Report]([https://Logan-Lay21.github.io/stock-portfolio-analysis](https://logan-lay21.github.io/stock-portfolio-analysis/stocks_tidyquant.html))**
+**[Live Report](https://logan-lay21.github.io/stock-portfolio-analysis/stocks_tidyquant.html))**
 
 ---
 
