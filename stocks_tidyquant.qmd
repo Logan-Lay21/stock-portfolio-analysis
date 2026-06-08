@@ -9,14 +9,12 @@ library(tidyquant)
 stocks <- c("VST", "UBER", "VPG", "NTDOY", "COST", "AAPL") %>% 
   tq_get(get = "stock.prices", from = "2025-10-01")
 
-
 begin <- stocks %>% 
   filter(date == "2025-10-01") %>% 
   mutate(
     amount = 1000 / open
   ) %>% 
   select(symbol, amount)
-
 
 stocks <- stocks %>% 
   left_join(y=begin, by="symbol") %>% 
@@ -34,17 +32,10 @@ daily_sum <- stocks %>%
     total_worth = sum(worth)
   )
 
-# View(daily_sum)
-# 
-# View(begin)
-# 
-# View(stocks)
-
 ```
 
 
 ```{r}
-
 
 ggplot(
   data = daily_sum, aes( x = date, y = total_worth, color=owner)
@@ -74,18 +65,11 @@ ggplot(
     color = "Investor"
   )
 
-
-# ?scale_x_date
-
-
 ```
 
 
 
 ```{r}
-
-
-
 
 ggplot(
   data = stocks, aes( x = date, y = worth, color = symbol)
@@ -113,10 +97,6 @@ ggplot(
   ) +
   annotate("text", x = as.Date("2026-02-08"), y = 1850, label = "VPG carrying Claude", color = "salmon", size = 4) +
   annotate("text", x = as.Date("2026-03-08"), y = 1215, label = "AAPL helped Logan", color = "steelblue", size = 4)
-
-
-# ?scale_color_manual
-
 
 ```
 
