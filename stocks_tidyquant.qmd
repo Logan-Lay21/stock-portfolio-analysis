@@ -34,6 +34,9 @@ daily_sum <- stocks %>%
 
 ```
 
+# Stock Selection
+
+For this project, I went ahead and asked Claude for 3 stocks that would compete against 3 stocks that I chose. I didn't have much rhyme or reason behind my choices, other than they were simply companies that I was familiar with: Nintendo (NTDOY), Costco (COST), and Apple (AAPL). Claude chose more methodically based off of previous performance: Vista Corp (VST), Uber (UBER), and Vishay Precision Group (VPG). 
 
 ```{r}
 
@@ -100,10 +103,11 @@ ggplot(
 
 ```
 
-
-For this project, I went ahead and asked Claude for 3 stocks that would compete against 3 stocks that I chose. I didn't have much rhyme or reason behind my choices, other than they were simply companies that I was familiar with: Nintendo (NTDOY), Costco (COST), and Apple (AAPL). Claude chose more methodically based off of previous performance: Vista Corp (VST), Uber (UBER), and Vishay Precision Group (VPG). 
+## Conclusion
 
 Claude's pick, Vishay Precision Group, crushed all of mine combined. At this current point, Claude's $3000, became $5203.43, and my $3000 is now $2781.67. We can see the individual stock comparisons in the second graph, Vishay Precision Group was the one company that really boosted Claude, in fact, it is the only one that boosted them. As for my stocks, the return was mediocre, and from what I noticed, Apple was the company that helped me throughout most of the competition.
+
+### AI Use
 
 "Claude selected its three stocks — Vistra Corp (VST), Uber (UBER), and Vishay Precision Group (VPG) — based on early June 2026 market research, targeting an energy infrastructure play, an established platform compounder, and a niche industrial/tech pick for diversification. The stock selection was made before any price data was pulled, and the portfolio was held unchanged for the duration of the competition per the project rules." - Claude
 

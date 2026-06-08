@@ -126,6 +126,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="at">total_worth =</span> <span class="fu">sum</span>(worth)</span>
 <span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<section id="stock-selection" class="level1">
+<h1>Stock Selection</h1>
+<p>For this project, I went ahead and asked Claude for 3 stocks that would compete against 3 stocks that I chose. I didn’t have much rhyme or reason behind my choices, other than they were simply companies that I was familiar with: Nintendo (NTDOY), Costco (COST), and Apple (AAPL). Claude chose more methodically based off of previous performance: Vista Corp (VST), Uber (UBER), and Vishay Precision Group (VPG).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> daily_sum, <span class="fu">aes</span>( <span class="at">x =</span> date, <span class="at">y =</span> total_worth, <span class="at">color=</span>owner)</span>
@@ -197,10 +200,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>For this project, I went ahead and asked Claude for 3 stocks that would compete against 3 stocks that I chose. I didn’t have much rhyme or reason behind my choices, other than they were simply companies that I was familiar with: Nintendo (NTDOY), Costco (COST), and Apple (AAPL). Claude chose more methodically based off of previous performance: Vista Corp (VST), Uber (UBER), and Vishay Precision Group (VPG).</p>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>Claude’s pick, Vishay Precision Group, crushed all of mine combined. At this current point, Claude’s $3000, became $5203.43, and my $3000 is now $2781.67. We can see the individual stock comparisons in the second graph, Vishay Precision Group was the one company that really boosted Claude, in fact, it is the only one that boosted them. As for my stocks, the return was mediocre, and from what I noticed, Apple was the company that helped me throughout most of the competition.</p>
+<section id="ai-use" class="level3">
+<h3 class="anchored" data-anchor-id="ai-use">AI Use</h3>
 <p>“Claude selected its three stocks — Vistra Corp (VST), Uber (UBER), and Vishay Precision Group (VPG) — based on early June 2026 market research, targeting an energy infrastructure play, an established platform compounder, and a niche industrial/tech pick for diversification. The stock selection was made before any price data was pulled, and the portfolio was held unchanged for the duration of the competition per the project rules.” - Claude</p>
 <p>“Claude also served as a tutoring resource throughout the coding process, guiding the use of tidyquant to pull stock price data, dplyr for data wrangling (joins, mutations, and grouping), and ggplot2 for visualization — without writing the code directly. All code was written by Logan.” - Claude</p>
+</section>
+</section>
+</section>
 
 </main>
 <!-- /main column -->
