@@ -40,9 +40,12 @@ For this project, I went ahead and asked Claude for 3 stocks that would compete 
 
 ```{r}
 
+??geom_hline
+
 ggplot(
   data = daily_sum, aes( x = date, y = total_worth, color=owner)
 ) +
+  geom_hline(yintercept=3000, linetype="dashed", alpha=0.5 ) +
   geom_line() +
   theme_minimal() +
   scale_color_manual(values = c("salmon", "steelblue")) +
@@ -77,6 +80,7 @@ ggplot(
 ggplot(
   data = stocks, aes( x = date, y = worth, color = symbol)
 ) +
+  geom_hline(yintercept=1000, linetype="dashed", alpha=0.5 ) +
   geom_line() +
   scale_color_manual(values = c("steelblue", "lightblue3", "blue", "pink2", "salmon", "red")) +
   theme_minimal() +
