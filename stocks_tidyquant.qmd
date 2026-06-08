@@ -1,0 +1,130 @@
+---
+title: "Stocks Tidyquant"
+---
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tidyquant)
+
+stocks <- c("VST", "UBER", "VPG", "NTDOY", "COST", "AAPL") %>% 
+  tq_get(get = "stock.prices", from = "2025-10-01")
+
+
+begin <- stocks %>% 
+  filter(date == "2025-10-01") %>% 
+  mutate(
+    amount = 1000 / open
+  ) %>% 
+  select(symbol, amount)
+
+
+stocks <- stocks %>% 
+  left_join(y=begin, by="symbol") %>% 
+  mutate(
+    worth = close * amount,
+    owner = case_when(
+      symbol %in% c("VST", "UBER", "VPG") ~ "Claude",
+      symbol %in% c("NTDOY", "COST", "AAPL") ~ "Logan"
+    )
+  )
+
+daily_sum <- stocks %>% 
+  group_by(date,owner) %>%
+  summarise(
+    total_worth = sum(worth)
+  )
+
+# View(daily_sum)
+# 
+# View(begin)
+# 
+# View(stocks)
+
+```
+
+
+```{r}
+
+
+ggplot(
+  data = daily_sum, aes( x = date, y = total_worth, color=owner)
+) +
+  geom_line() +
+  theme_minimal() +
+  scale_color_manual(values = c("salmon", "steelblue")) +
+  scale_y_continuous(
+    breaks = c(3000, 4000, 5000),
+    labels = c("$3000", "$4000", "$5000")
+  ) +
+  scale_x_date(
+    date_breaks = "1 month",
+    date_labels = "%b"
+  ) +
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    panel.grid.minor.x = element_blank(),
+    legend.position = c(0.15, 0.85),
+    legend.background = element_rect(fill = "white", color = "gray")
+  ) +
+  labs(
+    title = "A Friendly Stock Competition",
+    subtitle = "$1000 in 3 Stocks Each, the Total Daily Worth of Each Persons' Portfolio",
+    x = "",
+    y = "",
+    color = "Investor"
+  )
+
+
+# ?scale_x_date
+
+
+```
+
+
+
+```{r}
+
+
+
+
+ggplot(
+  data = stocks, aes( x = date, y = worth, color = symbol)
+) +
+  geom_line() +
+  scale_color_manual(values = c("steelblue", "lightblue3", "blue", "pink2", "salmon", "red")) +
+  theme_minimal() +
+  theme(
+    panel.grid.minor.x = element_blank()
+  ) +
+  scale_y_continuous(
+    breaks = c(1000, 2000, 3000, 4000),
+    labels = c("$1000", "$2000", "$3000", "$4000")
+  ) +
+  scale_x_date(
+    date_breaks = "1 month",
+    date_labels = "%b"
+  ) +
+  labs(
+    title = "Individual Stock Performance",
+    subtitle = "The Close Value for Each Day of Each Stock",
+    x = "",
+    y = "",
+    color = ""
+  ) +
+  annotate("text", x = as.Date("2026-02-08"), y = 1850, label = "VPG carrying Claude", color = "salmon", size = 4) +
+  annotate("text", x = as.Date("2026-03-08"), y = 1215, label = "AAPL helped Logan", color = "steelblue", size = 4)
+
+
+# ?scale_color_manual
+
+
+```
+
+
+For this project, I went ahead and asked Claude for 3 stocks that would compete against 3 stocks that I chose. I didn't have much rhyme or reason behind my choices, other than they were simply companies that I was familiar with: Nintendo (NTDOY), Costco (COST), and Apple (AAPL). Claude chose more methodically based off of previous performance: Vista Corp (VST), Uber (UBER), and Vishay Precision Group (VPG). 
+
+Claude's pick, Vishay Precision Group, crushed all of mine combined. At this current point, Claude's $3000, became $5203.43, and my $3000 is now $2781.67. We can see the individual stock comparisons in the second graph, Vishay Precision Group was the one company that really boosted Claude, in fact, it is the only one that boosted them. As for my stocks, the return was mediocre, and from what I noticed, Apple was the company that helped me throughout most of the competition.
+
+"Claude selected its three stocks — Vistra Corp (VST), Uber (UBER), and Vishay Precision Group (VPG) — based on early June 2026 market research, targeting an energy infrastructure play, an established platform compounder, and a niche industrial/tech pick for diversification. The stock selection was made before any price data was pulled, and the portfolio was held unchanged for the duration of the competition per the project rules." - Claude
+
+"Claude also served as a tutoring resource throughout the coding process, guiding the use of tidyquant to pull stock price data, dplyr for data wrangling (joins, mutations, and grouping), and ggplot2 for visualization — without writing the code directly. All code was written by Logan." - Claude
